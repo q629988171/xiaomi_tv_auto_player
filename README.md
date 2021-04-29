@@ -4,11 +4,16 @@
 
 # 环境说明：
 
-电视:Redmi A32 L32R6-A (Android 5.1.1, MiTV OS 2.0.8)
+电视: Redmi A32 L32R6-A (Android 5.1.1, MiTV OS 2.0.8)
 
-APP:银河奇异果 11.1.0.126671
+APP: 银河奇异果 11.1.0.126671
+
+开发板:
 
 Digispark Attiny85
+
+Leonardo usb ATMEGA32U4
+
 
 
 # 要求：

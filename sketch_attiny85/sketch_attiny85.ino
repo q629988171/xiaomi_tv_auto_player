@@ -25,8 +25,6 @@ void setup() {
   
   keyPressed(KEY_ARROW_DOWN);
   delay(1000);
-  keyPressed(KEY_ARROW_DOWN);
-  delay(1000);
   keyPressed(KEY_ENTER);
   delay(3000);
   keyPressed(KEY_ENTER);

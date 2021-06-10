@@ -13,7 +13,13 @@ Digispark Attiny85
 
 Leonardo usb ATMEGA32U4
 
+软件:
 
+Arduino-1.8.13
+
+Digistump Drivers
+
+Windows 10 x64
 
 # 要求：
 

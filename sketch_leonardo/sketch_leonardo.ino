@@ -19,8 +19,6 @@ void setup() {
   //send a keystroke
   sendKeyStroke(KEY_DOWN_ARROW);
   delay(1000);
-  sendKeyStroke(KEY_DOWN_ARROW);
-  delay(1000);
   sendKeyStroke(KEY_RETURN);
   delay(3000);
   sendKeyStroke(KEY_RETURN);

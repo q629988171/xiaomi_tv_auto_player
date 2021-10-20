@@ -19,16 +19,16 @@ void setup() {
    */
   DigiKeyboard.sendKeyStroke(0);
 
-  for(int i = 1; i <= 6; i++) {
-    delay(1000*10);
-  }
+  sleep(1);
   
   keyPressed(KEY_ARROW_DOWN);
   delay(1000);
   keyPressed(KEY_ENTER);
-  delay(3000);
+  
+  delay(9000);
   keyPressed(KEY_ENTER);
-  delay(5000);
+  
+  sleep(1);
   keyPressed(KEY_ENTER);
 }
 
@@ -47,4 +47,16 @@ void keyPressed(byte keyStroke){
   delay(100);
   // called whenever a pressed key is released on a connected USB keyboard.
   DigiKeyboard.sendKeyStroke(0);
+}
+
+
+/**
+ * @Description: 暂停程序指定为参数的时间量（以分钟为单位）。
+ * @param m: the number of minutes to pause. Allowed data types: unsigned long.
+ * @return none
+ */
+void sleep(unsigned long m){
+  for(int i = 1; i <= 6 * m; i++) {
+    delay(1000*10);
+  }
 }

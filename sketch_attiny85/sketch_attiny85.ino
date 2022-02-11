@@ -57,11 +57,11 @@ void keyPressed(byte keyStroke){
 
 /**
  * @Description: 按向下键, 延迟指定时间（以毫秒为单位）, 最后按确认键。
- * @param s: the number of seconds to pause. Allowed data types: unsigned long.
+ * @param ms: the number of milliseconds to pause. Allowed data types: unsigned long.
  * @return none
  */
-void keyDownEnter(unsigned long s){
+void keyDownEnter(unsigned long ms){
   keyPressed(KEY_ARROW_DOWN);
-  delay(s);
+  delay(ms);
   keyPressed(KEY_ENTER);
 }

@@ -1,8 +1,8 @@
 /**
  * @Author: Allen
- * @Description: 小米电视开机自动播放历史
+ * @Description: 小米电视开机自动播放历史视频
  * @File: msketch_feb21b.ino
- * @Version: 1.0.2
+ * @Version: 1.0.3
  * @Date: 2021/4/28 16:21
  */
 
@@ -13,28 +13,28 @@
 
 
 void setup() {
-  unsigned long seconds = 1000L; //Notice the L
+  // Notice the L
+  unsigned long seconds = 1000L;
   unsigned long minutes = seconds * 60;
   /**
    * When the HIDIOT first starts, it sometimes misses the first key press. 
    * Using DigiKeyboard.sendKeyStroke(0) makes it send a key stroke that the computer won’t print.
    */
   DigiKeyboard.sendKeyStroke(0);
+  
   // 等开机广告(一分钟)
   delay(minutes);
-  // ↓·
-  keyPressed(KEY_ARROW_DOWN);
-  delay(1000);
-  keyPressed(KEY_ENTER);
+  // 按向下键和确认键(中间隔1秒)
+  keyDownEnter(1000);
+  
   // 等切换画面(一分钟)
   delay(minutes);
-  // ↓·
-  keyPressed(KEY_ARROW_DOWN);
-  delay(1000);
-  keyPressed(KEY_ENTER);
+  // 按向下键和确认键(中间隔1秒)
+  keyDownEnter(1000);
+  
   // 等待响应(1分钟)
   delay(minutes);
-  // 播放
+  // 按播放键
   keyPressed(KEY_ENTER);
 }
 
@@ -53,4 +53,15 @@ void keyPressed(byte keyStroke){
   delay(100);
   // called whenever a pressed key is released on a connected USB keyboard.
   DigiKeyboard.sendKeyStroke(0);
+}
+
+/**
+ * @Description: 按向下键, 延迟指定时间（以毫秒为单位）, 最后按确认键。
+ * @param s: the number of seconds to pause. Allowed data types: unsigned long.
+ * @return none
+ */
+void keyDownEnter(unsigned long s){
+  keyPressed(KEY_ARROW_DOWN);
+  delay(s);
+  keyPressed(KEY_ENTER);
 }

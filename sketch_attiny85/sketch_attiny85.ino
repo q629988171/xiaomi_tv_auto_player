@@ -1,8 +1,8 @@
 /**
  * @Author: Allen
- * @Description: 小米电视开机自动播放《萌鸡小队》
+ * @Description: 小米电视开机自动播放历史
  * @File: msketch_feb21b.ino
- * @Version: 1.0.1
+ * @Version: 1.0.2
  * @Date: 2021/4/28 16:21
  */
 
@@ -13,22 +13,28 @@
 
 
 void setup() {
+  unsigned long seconds = 1000L; //Notice the L
+  unsigned long minutes = seconds * 60;
   /**
    * When the HIDIOT first starts, it sometimes misses the first key press. 
    * Using DigiKeyboard.sendKeyStroke(0) makes it send a key stroke that the computer won’t print.
    */
   DigiKeyboard.sendKeyStroke(0);
-
-  sleep(1);
-  
+  // 等开机广告(一分钟)
+  delay(minutes);
+  // ↓·
   keyPressed(KEY_ARROW_DOWN);
   delay(1000);
   keyPressed(KEY_ENTER);
-  
-  delay(9000);
+  // 等切换画面(一分钟)
+  delay(minutes);
+  // ↓·
+  keyPressed(KEY_ARROW_DOWN);
+  delay(1000);
   keyPressed(KEY_ENTER);
-  
-  sleep(1);
+  // 等待响应(1分钟)
+  delay(minutes);
+  // 播放
   keyPressed(KEY_ENTER);
 }
 
@@ -47,16 +53,4 @@ void keyPressed(byte keyStroke){
   delay(100);
   // called whenever a pressed key is released on a connected USB keyboard.
   DigiKeyboard.sendKeyStroke(0);
-}
-
-
-/**
- * @Description: 暂停程序指定为参数的时间量（以分钟为单位）。
- * @param m: the number of minutes to pause. Allowed data types: unsigned long.
- * @return none
- */
-void sleep(unsigned long m){
-  for(int i = 1; i <= 6 * m; i++) {
-    delay(1000*10);
-  }
 }

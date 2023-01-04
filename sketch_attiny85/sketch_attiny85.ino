@@ -2,14 +2,15 @@
  * @Author: Allen
  * @Description: 小米电视开机自动播放历史视频
  * @File: msketch_feb21b.ino
- * @Version: 1.0.3
- * @Date: 2021/4/28 16:21
+ * @Version: 1.0.4
+ * @Date: 2023/01/03 14:14
  */
 
 
 #include "DigiKeyboard.h"
 
 #define KEY_ARROW_DOWN 0x51
+#define KEY_ESCAPE 0x29
 
 
 void setup() {
@@ -22,46 +23,29 @@ void setup() {
    */
   DigiKeyboard.sendKeyStroke(0);
   
-  // 等开机广告(一分钟)
-  delay(minutes);
-  // 按向下键和确认键(中间隔1秒)
-  keyDownEnter(1000);
+  // 等开机广告(两分钟)
+  DigiKeyboard.delay(minutes);
+  DigiKeyboard.delay(minutes);
+
+  // ALT+ESC（返回主页并等6秒）
+  DigiKeyboard.sendKeyStroke(KEY_ESCAPE, MOD_ALT_LEFT);
+  DigiKeyboard.delay(6000);
   
-  // 等切换画面(一分钟)
-  delay(minutes);
-  // 按向下键和确认键(中间隔1秒)
-  keyDownEnter(1000);
+  // 按向下键和确认键(按继续观看3秒后回车)
+  DigiKeyboard.sendKeyStroke(KEY_ARROW_DOWN);
+  DigiKeyboard.delay(3000);
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+
+  // 回车(等待9秒后从历史记录中选择首个)
+  DigiKeyboard.delay(9000);
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
   
-  // 等待响应(1分钟)
-  delay(minutes);
-  // 按播放键
-  keyPressed(KEY_ENTER);
+  // 回车(等待12秒后切换当前视频窗口并播放)
+  DigiKeyboard.delay(12000);
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
-}
-
-/**
- * @Description: 按下键盘上的按键
- * @param keyStroke
- * @return none
- */
-void keyPressed(byte keyStroke){
-  DigiKeyboard.sendKeyStroke(keyStroke);
-  delay(100);
-  // called whenever a pressed key is released on a connected USB keyboard.
-  DigiKeyboard.sendKeyStroke(0);
-}
-
-/**
- * @Description: 按向下键, 延迟指定时间（以毫秒为单位）, 最后按确认键。
- * @param ms: the number of milliseconds to pause. Allowed data types: unsigned long.
- * @return none
- */
-void keyDownEnter(unsigned long ms){
-  keyPressed(KEY_ARROW_DOWN);
-  delay(ms);
-  keyPressed(KEY_ENTER);
 }
